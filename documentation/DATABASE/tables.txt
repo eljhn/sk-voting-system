@@ -1,0 +1,92 @@
+CREATE DATABASE
+sk_voting_db
+
+-- candidates table
+CREATE TABLE candidates (
+    candidate_id INT AUTO_INCREMENT PRIMARY KEY,
+    full_name VARCHAR(255) NOT NULL,
+    status VARCHAR(50) DEFAULT 'active',
+    nickname VARCHAR(100),
+    birthday DATE,
+    age INT,
+    birthplace VARCHAR(255),
+    address VARCHAR(255),
+    barangay VARCHAR(150),
+    municipality VARCHAR(150),
+    province VARCHAR(150),
+    phone VARCHAR(20),
+    email VARCHAR(150),
+    registered_voter ENUM('Yes','No') DEFAULT 'Yes',
+    public_office VARCHAR(255),
+    position VARCHAR(150),
+    age_requires VARCHAR(100),
+    current_school VARCHAR(255),
+    year_level VARCHAR(100),
+    occupation VARCHAR(255),
+    occupation_position VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+
+
+-- New Candidates table
+CREATE TABLE new_candidates (
+    candidate_id INT AUTO_INCREMENT PRIMARY KEY,
+    full_name VARCHAR(255) NOT NULL,
+    nickname VARCHAR(100),
+    birthdate DATE,
+    age INT,
+    birthplace VARCHAR(255),
+    address VARCHAR(255),
+    barangay VARCHAR(150),
+    municipality VARCHAR(150),
+    province VARCHAR(150),
+    phone VARCHAR(20),
+    email VARCHAR(150),
+    registered_voter ENUM('Yes','No') DEFAULT 'Yes',
+    public_office VARCHAR(255),
+    position VARCHAR(150),
+    age_require VARCHAR(100),
+    current_school VARCHAR(255),
+    year_level VARCHAR(100),
+    occupation VARCHAR(255),
+    occupation_position VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+
+
+-- Voters table
+CREATE TABLE voters (
+    voter_id INT AUTO_INCREMENT PRIMARY KEY,
+    fullname VARCHAR(255) NOT NULL,
+    email VARCHAR(150) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    birthdate DATE,
+    age INT,
+    birthplace VARCHAR(255),
+    contact VARCHAR(20),
+    sex ENUM('Male', 'Female', 'Other') NOT NULL,
+    citizenship VARCHAR(100),
+    civil_status ENUM('Single', 'Married', 'Widowed', 'Divorced', 'Separated') DEFAULT 'Single',
+    street_barangay VARCHAR(255),
+    municipality_city VARCHAR(150),
+    province VARCHAR(150),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    registered_voter ENUM('Yes','No') DEFAULT 'Yes',
+    registration_status ENUM('Pending','Approved','Rejected') DEFAULT 'Pending'
+);
+
+
+
+
+-- Votes table
+CREATE TABLE votes (
+    vote_id INT AUTO_INCREMENT PRIMARY KEY,
+    voter_id INT NOT NULL,
+    candidate_id INT NOT NULL,
+    FOREIGN KEY (voter_id) REFERENCES voters(voter_id) ON DELETE CASCADE,
+    FOREIGN KEY (candidate_id) REFERENCES candidates(candidate_id) ON DELETE CASCADE
+);
