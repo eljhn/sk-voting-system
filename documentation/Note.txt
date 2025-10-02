@@ -1,0 +1,6 @@
+Additional Note:
+
+-Default Admin Credentials-
+
+Username: admin
+Password: 12345
