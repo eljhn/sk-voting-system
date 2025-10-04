@@ -7,7 +7,7 @@ CREATE TABLE candidates (
     full_name VARCHAR(255) NOT NULL,
     status VARCHAR(50) DEFAULT 'active',
     nickname VARCHAR(100),
-    birthday DATE,
+    birthdate DATE,
     age INT,
     birthplace VARCHAR(255),
     address VARCHAR(255),
